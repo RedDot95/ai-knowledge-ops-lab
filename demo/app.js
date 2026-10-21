@@ -1,9 +1,21 @@
 (async () => {
   const status = document.getElementById('status');
   const list = document.getElementById('records');
-  try {
-    const response = await fetch('replay.json');
+  const selector = document.getElementById('run');
+  let requestId = 0;
+  async function render() {
+    const currentRequest = ++requestId;
+    list.replaceChildren();
+    status.textContent = 'Loading recorded results…';
+    try {
+    const file = selector.value === 'manual' ? 'manual-replay.json' : 'replay.json';
+    const response = await fetch(file);
+    if (!response.ok) throw new Error('Replay unavailable');
     const replay = await response.json();
+    if (currentRequest !== requestId) return;
+    document.getElementById('method').textContent = selector.value === 'manual'
+      ? 'Three actual in-session assistant extractions, manually transferred and validated. Full project context was visible. No API; no isolated frozen-prompt experiment; no independently scored accuracy. All entries await human review.'
+      : 'Fifteen real SEC filings processed by deterministic rules. Provisional labels are unreviewed; this is not a validated performance benchmark.';
     status.textContent = `${replay.processor || 'Not run'} (${(replay.records || []).length} records)`;
 
     for (const record of replay.records || []) {
@@ -42,6 +54,9 @@
       list.appendChild(li);
     }
   } catch (error) {
-    status.textContent = 'Not run';
+    if (currentRequest === requestId) status.textContent = 'Recorded results could not be loaded';
+    }
   }
+  selector.addEventListener('change', render);
+  await render();
 })();

@@ -4,13 +4,13 @@ Applied AI research operations for turning real public company disclosures into 
 
 > **Recorded pipeline results — no live model processing**
 
-**Status: Implemented; deterministic workflow tested locally.** Application LLM inference, held-out evaluation, owner annotation review, GitHub Pages deployment and recruiting-ready acceptance remain open. All work is on a review branch; `main` has not been merged.
+**Status: Implemented; deterministic workflow tested locally.** A three-source in-session AI extraction is recorded; isolated model experiments and held-out evaluation, owner annotation review, GitHub Pages deployment and recruiting-ready acceptance remain open. All work is on a review branch; `main` has not been merged.
 
 ## Scope and current state
 
 - Real source corpus: frozen 15-document SEC Form 8-K development manifest at `data/dev_manifest.json` (reused from commit `104cfef170f90c282cf9fe5a9d90a53ddee502fc`).
 - Processor A (rules): implemented deterministic baseline.
-- Processors B/C (direct/controlled): implemented as **auditable import** of model outputs only; no application inference.
+- Processors B/C (direct/controlled): implemented as **auditable import** of model outputs only; a real three-source in-session assistant demonstration has been imported, with explicit method limitations.
 - Ground truth: `data/ground_truth.json` is marked **AI-assisted/unreviewed**.
 - Synthetic robustness fixtures: `data/robustness.json` (10 cases), excluded from reported real-source metrics.
 
@@ -53,9 +53,9 @@ No claim is made of owner code authorship, owner annotation approval, or product
 
 ## Evidence and limits
 
-On 21 October 2026, the corrected adapter fetched all 15 frozen real development filings with zero errors, and reproduced their recorded text hashes. The rules CLI processed all 15 and generated the committed replay. **32 local automated tests passed**, including regressions for false metric credit, malformed imports, stale approvals and frozen-source extraction. CI has a separate execution state; local tests are not proof of a passing GitHub Actions run.
+On 21 October 2026, the corrected adapter fetched all 15 frozen real development filings with zero errors, and reproduced their recorded text hashes. The rules CLI processed all 15 and generated the committed replay. **32 local automated tests passed**, including regressions for false metric credit, malformed imports, stale approvals and frozen-source extraction. GitHub Actions run [39652111942](https://github.com/RedDot95/ai-knowledge-ops-lab/actions/runs/39652111942) also passed on commit `4ea75b6`; subsequent commits require their own CI result.
 
-The rule baseline is deliberately simple and has weak event classification on these filings. Ground-truth labels are provisional and contain cases requiring further review; exact-value and semantic-support annotations are incomplete. Its diagnostic score is not a validated performance benchmark. Undefined quality measures remain undefined. No live model response was fabricated to populate the demo.
+The rule baseline is deliberately simple and has weak event classification on these filings. Ground-truth labels are provisional and contain cases requiring further review; exact-value and semantic-support annotations are incomplete. Its diagnostic score is not a validated performance benchmark. Undefined quality measures remain undefined. The demo offers the actual 15-source rules replay and a separate three-source AI-assisted replay. See [the recorded session](docs/manual-model-session.md). Neither is a validated model benchmark.
 
 For model imports, use an envelope containing `source_id`, the exact canonical `input_sha256`, `model`, `session_id`, timezone-aware `received_at`, and either `response_text` or `output`. Raw envelopes are retained. Mark test responses `mock: true`; source fixtures also carry mock provenance. API access is not configured by the import command.
 
