@@ -25,6 +25,8 @@ class _VisibleTextParser(HTMLParser):
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
         if tag in {"script", "style", "ix:header"}:
             self._skip_depth += 1
+        elif tag in {'p', 'div', 'br', 'tr', 'td', 'h1', 'h2'} and not self._skip_depth:
+            self._parts.append(' ')
 
     def handle_endtag(self, tag: str) -> None:
         if self._skip_depth and tag in {"script", "style", "ix:header"}:
@@ -33,12 +35,10 @@ class _VisibleTextParser(HTMLParser):
     def handle_data(self, data: str) -> None:
         if self._skip_depth:
             return
-        value = " ".join(data.split())
-        if value:
-            self._parts.append(value)
+        self._parts.append(data)
 
     def text(self) -> str:
-        return "\n".join(self._parts)
+        return ' '.join(''.join(self._parts).split())
 
 
 def html_to_text(raw_html: str) -> str:

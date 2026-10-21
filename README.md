@@ -4,6 +4,8 @@ Applied AI research operations for turning real public company disclosures into 
 
 > **Recorded pipeline results — no live model processing**
 
+**Status: Implemented; deterministic workflow tested locally.** Application LLM inference, held-out evaluation, owner annotation review, GitHub Pages deployment and recruiting-ready acceptance remain open. All work is on a review branch; `main` has not been merged.
+
 ## Scope and current state
 
 - Real source corpus: frozen 15-document SEC Form 8-K development manifest at `data/dev_manifest.json` (reused from commit `104cfef170f90c282cf9fe5a9d90a53ddee502fc`).
@@ -30,6 +32,7 @@ python -m knowledge_ops evaluate --run .local/rules-run --truth data/ground_trut
 python -m knowledge_ops export --run .local/rules-run --output demo/replay.json
 python -m knowledge_ops import --input .local/sources/records.json --responses .local/responses.json --processor direct --output .local/direct-run
 python -m knowledge_ops import --input .local/sources/records.json --responses .local/responses.json --processor controlled --output .local/controlled-run
+python -m knowledge_ops review --run .local/rules-run --decisions .local/decisions.json
 ```
 
 ## Architecture
@@ -44,6 +47,16 @@ python -m knowledge_ops import --input .local/sources/records.json --responses .
 
 - Owner supplied requirements and real-data direction.
 - Assistant proposed architecture and data-prep flow.
-- Copilot implementation is this MVP.
+- Copilot produced the initial MVP; ChatGPT Work performed independent review, reproduced defects, added regression tests and corrected the implementation. The failure analysis is in `docs/evaluation.md`.
 
 No claim is made of owner code authorship, owner annotation approval, or production-readiness.
+
+## Evidence and limits
+
+On 21 October 2026, the corrected adapter fetched all 15 frozen real development filings with zero errors, and reproduced their recorded text hashes. The rules CLI processed all 15 and generated the committed replay. **32 local automated tests passed**, including regressions for false metric credit, malformed imports, stale approvals and frozen-source extraction. CI has a separate execution state; local tests are not proof of a passing GitHub Actions run.
+
+The rule baseline is deliberately simple and has weak event classification on these filings. Ground-truth labels are provisional and contain cases requiring further review; exact-value and semantic-support annotations are incomplete. Its diagnostic score is not a validated performance benchmark. Undefined quality measures remain undefined. No live model response was fabricated to populate the demo.
+
+For model imports, use an envelope containing `source_id`, the exact canonical `input_sha256`, `model`, `session_id`, timezone-aware `received_at`, and either `response_text` or `output`. Raw envelopes are retained. Mark test responses `mock: true`; source fixtures also carry mock provenance. API access is not configured by the import command.
+
+For manual review, submit a JSON list with `record_id`, `reviewer`, timezone-aware `timestamp`, `decision` (`approve`, `reject`, `request_changes`), `rationale`, `source_hash` (the record's `input_sha256`), `output_hash` from `knowledge_ops.quality.review_output_hash`, and the run's `code_revision`. The CLI appends submitted decisions to `reviews.jsonl`; deterministic rejects cannot be approved. This local audit log is not tamper-proof storage or enterprise access control.

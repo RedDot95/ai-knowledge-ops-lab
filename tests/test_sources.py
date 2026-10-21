@@ -7,7 +7,12 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-from knowledge_ops.sources import SecAdapter
+from knowledge_ops.sources import SecAdapter, html_to_text
+
+
+class FrozenExtractionRegression(unittest.TestCase):
+    def test_original_extraction_whitespace_contract(self):
+        self.assertEqual(html_to_text('<html><p>Amount <b>USD</b> 10</p><p>Next</p></html>'), 'Amount USD 10 Next')
 
 
 class _FakeResponse:

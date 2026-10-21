@@ -5,3 +5,12 @@
 3. Implemented only deterministic processing plus model-output import; no live model inference.
 4. Enforced strict input validation (duplicate keys/IDs, malformed types, date format, >50KB text, hash mismatch).
 5. Routed high-risk records to `needs_review` or `rejected` based on deterministic rules.
+# Review decisions — 21 October 2026
+
+- Owner: specified the business requirements, real-data direction and authorized one bounded Copilot implementation run.
+- Copilot: generated the initial implementation on an isolated Draft PR.
+- ChatGPT Work: independently reproduced failures after the original 17 tests passed; corrected them locally and added regression coverage. No second Copilot assignment was started. The attempted in-flight steering message was not delivered by GitHub.
+- Assistant review decision: keep model imports explicit and require provenance; never count coding-agent execution as application-model inference.
+- Assistant review decision: retain the frozen 15-source selection; repair extraction rather than rewriting expected hashes to fit broken output.
+- Assistant review decision: publish actual deterministic replay only; leave incomplete extraction/support metrics undefined and keep all LLM/holdout performance claims open.
+- Owner technical review, annotation review, target protection activation, Pages deployment and exact-HEAD merge remain open. These assistant decisions are not presented as owner expertise or independent human approval.

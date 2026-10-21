@@ -15,13 +15,30 @@
       const review = document.createElement('p');
       review.textContent = `Review status: ${record.review_status}`;
       const link = document.createElement('a');
-      link.href = record.source_url || '#';
+      let safeURL = '';
+      try {
+        const candidate = new URL(record.source_url);
+        if (candidate.protocol === 'https:' && ['www.sec.gov', 'data.sec.gov'].includes(candidate.hostname)) safeURL = candidate.href;
+      } catch (_) { /* Invalid source URLs remain inert text. */ }
+      link.href = safeURL || '#';
       link.textContent = 'Source URL';
       link.rel = 'noopener noreferrer';
-      if (!record.source_url) {
+      if (!safeURL) {
         link.removeAttribute('href');
       }
       li.append(title, summary, review, link);
+      const flags = document.createElement('p');
+      flags.textContent = `Quality flags: ${(record.validation_issues || []).join(', ') || 'None reported — semantic correctness not established'}`;
+      const provenance = document.createElement('p');
+      provenance.textContent = `Input SHA256: ${record.input_sha256 || 'Unavailable'}`;
+      li.append(flags, provenance);
+      const facts = document.createElement('ul');
+      for (const fact of record.facts || []) {
+        const item = document.createElement('li');
+        item.textContent = `${fact.field}: ${fact.value} ${fact.currency || ''} | Evidence: ${fact.evidence?.quote || 'Missing'} [${fact.evidence?.start ?? '?'}:${fact.evidence?.end ?? '?'}]`;
+        facts.appendChild(item);
+      }
+      li.appendChild(facts);
       list.appendChild(li);
     }
   } catch (error) {

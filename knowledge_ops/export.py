@@ -13,11 +13,15 @@ def export_replay(run_payload: dict[str, Any], output_path: str | Path) -> dict[
     replay = {
         "banner": BANNER,
         "generated_from_run": run_payload.get("run_id"),
+        "code_revision": run_payload.get("code_revision"),
+        "code_dirty": run_payload.get("code_dirty"),
+        "code_files_sha256": run_payload.get("code_files_sha256"),
+        "prompt_sha256": run_payload.get("prompt_sha256"),
+        "timing_scope": run_payload.get("timing_scope"),
         "processor": run_payload.get("processor") if has_records else "Not run",
         "approaches": {
-            "rules": "Recorded" if has_records else "Not run",
-            "direct": "Not run",
-            "controlled": "Not run",
+            name: 'Recorded' if has_records and run_payload.get('processor') == name else 'Not run'
+            for name in ('rules', 'direct', 'controlled')
         },
         "records": [
             {
@@ -30,6 +34,7 @@ def export_replay(run_payload: dict[str, Any], output_path: str | Path) -> dict[
                 "validation_issues": record.get("validation_issues", []),
                 "facts": record.get("facts", []),
                 "provenance": record.get("provenance", {}),
+                "input_sha256": record.get('input_sha256'),
             }
             for record in run_payload.get("records", [])
         ],

@@ -30,11 +30,15 @@ def _macro_f1(truth: list[str], pred: list[str]) -> float:
 
 def evaluate_run(run_payload: dict[str, Any], truth_payload: dict[str, Any], split: str) -> dict[str, Any]:
     truth_records = [row for row in truth_payload.get("records", []) if row.get("split") == split]
-    predictions = {
-        record["source_id"]: record
-        for record in run_payload.get("records", [])
-        if not record.get("provenance", {}).get("mock") and not str(record.get("source_id", "")).startswith("mock-")
-    }
+    grouped = {}
+    excluded = 0
+    for record in run_payload.get("records", []):
+        if record.get("provenance", {}).get("mock") or str(record.get("source_id", "")).startswith("mock-"):
+            excluded += 1
+            continue
+        grouped.setdefault(record.get("source_id"), []).append(record)
+    predictions = {key: values[0] for key, values in grouped.items() if len(values) == 1}
+    value_annotations_complete = all(isinstance(t.get("expected_values"), dict) or not t.get("expected_fields") for t in truth_records)
 
     truth_labels: list[str] = []
     predicted_labels: list[str] = []
@@ -51,28 +55,34 @@ def evaluate_run(run_payload: dict[str, Any], truth_payload: dict[str, Any], spl
         source_id = truth["source_id"]
         truth_label = truth["event_type"]
         pred = predictions.get(source_id)
+        expected = truth.get("expected_values", {})
+        applicable_expected += len(expected) if "expected_values" in truth else len(truth.get("expected_fields", []))
         truth_labels.append(truth_label)
-        if not pred or pred.get("event_type") not in TAXONOMY:
-            predicted_labels.append("other")
+        invalid = (not pred or pred.get("event_type") not in TAXONOMY
+                   or pred.get("schema_valid") is False or pred.get("hard_rejected") or pred.get("review_status") in {"rejected", "human_rejected"})
+        if pred:
+            if pred.get("review_status") in {"needs_review", "pending_review"}:
+                needs_review_count += 1
+            if pred.get("review_status") in {"rejected", "human_rejected"}:
+                rejected_count += 1
+        error_issues = {i for r in grouped.get(source_id, []) for i in r.get('validation_issues', []) if isinstance(i,str)}
+        if error_issues.intersection({"wrong_company", "wrong_amount", "invented_event", "unsafe_release"}):
+            critical_errors += 1
+        if invalid:
+            predicted_labels.append("__invalid__")
             missing_or_invalid += 1
             continue
-
         predicted_labels.append(pred["event_type"])
-
         issues = pred.get("validation_issues", [])
-        if not issues:
+        if pred.get("schema_valid", not issues):
             schema_valid_count += 1
-        if pred.get("review_status") == "needs_review":
-            needs_review_count += 1
-        if pred.get("review_status") == "rejected":
-            rejected_count += 1
-            critical_errors += 1
-
-        expected_fields = truth.get("expected_fields", [])
-        observed_fields = {fact.get("field") for fact in pred.get("facts", []) if isinstance(fact, dict)}
-        applicable_expected += len(expected_fields)
-        applicable_valid += sum(1 for field in expected_fields if field in observed_fields)
-        unsupported_extra_fields += sum(1 for field in observed_fields if field and field not in ALLOWED_FIELDS)
+        facts = pred.get("facts", [])
+        observed = {}
+        for fact in facts:
+            if isinstance(fact, dict) and isinstance(fact.get("field"), str):
+                observed.setdefault(fact["field"], []).append(fact.get("value"))
+        applicable_valid += sum(observed.get(field) == [value] for field, value in expected.items())
+        unsupported_extra_fields += sum(field not in expected for field in observed) if "expected_values" in truth else sum(field not in ALLOWED_FIELDS for field in observed)
 
     total = len(truth_records)
     correct = sum(1 for t, p in zip(truth_labels, predicted_labels) if t == p)
@@ -86,9 +96,12 @@ def evaluate_run(run_payload: dict[str, Any], truth_payload: dict[str, Any], spl
         "classification_accuracy": _safe_div(correct, total),
         "macro_f1_fixed_4_class": _macro_f1(truth_labels, predicted_labels) if total else None,
         "schema_valid_rate": _safe_div(schema_valid_count, total),
-        "applicable_field_extraction_validity": _safe_div(applicable_valid, applicable_expected),
+        "applicable_field_extraction_validity": _safe_div(applicable_valid, applicable_expected) if value_annotations_complete else None,
+        "extraction_note": "Exact expected values required; field presence is not validity. Incomplete value annotation yields undefined.",
         "unsupported_extra_fields": unsupported_extra_fields,
-        "critical_record_errors": critical_errors,
+        "critical_record_errors": critical_errors if critical_errors or truth_payload.get("critical_annotations_complete") else None,
+        "critical_error_note": "Undefined without critical-error annotations; schema rejection alone is not a critical factual error.",
+        "duplicate_prediction_sources": sum(len(v) > 1 for v in grouped.values()),
         "needs_review_rate": _safe_div(needs_review_count, total),
         "reject_rate": _safe_div(rejected_count, total),
         "missing_or_invalid_outputs": missing_or_invalid,
@@ -97,7 +110,7 @@ def evaluate_run(run_payload: dict[str, Any], truth_payload: dict[str, Any], spl
         "timing_seconds": run_payload.get("timing_seconds"),
         "cost_estimate": "unknown",
         "ground_truth_status": truth_payload.get("ground_truth_status", "AI-assisted/unreviewed"),
-        "excluded_mock_records": len(run_payload.get("records", [])) - len(predictions),
+        "excluded_mock_records": excluded,
     }
 
 
