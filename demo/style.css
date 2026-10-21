@@ -1,0 +1,32 @@
+body {
+  font-family: system-ui, sans-serif;
+  margin: 0;
+  padding: 1rem;
+  background: #f5f7fa;
+  color: #111827;
+}
+
+main {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.banner {
+  background: #fef3c7;
+  border: 1px solid #f59e0b;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+}
+
+#records {
+  list-style: none;
+  padding: 0;
+}
+
+#records li {
+  background: white;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  margin-bottom: 0.75rem;
+}

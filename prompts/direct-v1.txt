@@ -1,0 +1,5 @@
+You are extracting structured event records from a SEC filing text.
+Return JSON only with keys: event_type, facts, tags, summary.
+Taxonomy: financing, earnings, leadership_change, other.
+Facts must include field, value, evidence {start,end,quote}. Amounts must include explicit currency.
+If uncertain, choose event_type="other" and include ambiguity note in summary.

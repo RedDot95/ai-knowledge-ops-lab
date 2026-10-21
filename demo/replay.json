@@ -1,0 +1,11 @@
+{
+  "banner": "Recorded pipeline results — no live model processing",
+  "generated_from_run": "rules-20261021T180851Z",
+  "processor": "Not run",
+  "approaches": {
+    "rules": "Not run",
+    "direct": "Not run",
+    "controlled": "Not run"
+  },
+  "records": []
+}
