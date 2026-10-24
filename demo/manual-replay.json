@@ -1,0 +1,164 @@
+{
+  "banner": "Recorded pipeline results — no live model processing",
+  "generated_from_run": "controlled-20261021T184753Z",
+  "code_revision": "7b33d835079bd6bf829facdd6685cd5a2b56fc73",
+  "code_dirty": true,
+  "code_files_sha256": {
+    "sources.py": "43a2a4f3bd616bc26c3d2a813f024d4a584f67cf454531c42f43dfd1f21d5a02",
+    "ingest.py": "0bd582629daa457e53741544956e53ef5b5324891f40270781f5661ec78b2bc9",
+    "__init__.py": "c126aeb358b320ebf6e18fa4b618dc0f84b6ecf993390f63b91ebf1c6eb71530",
+    "export.py": "9b27fd46a242df433429de68de01314d3afa9e26d0d5b7814dee2c4550a35acb",
+    "__main__.py": "df39d8e1ddb97496a92fba6c957d9b948d03a11dbba94f4c6cbaf80c140b5138",
+    "evaluate.py": "0a509315eb383f5734f0ed38fe985e163d3964b6fae446c990d68a4faa0197e2",
+    "processors.py": "8d23cc33a29ad1e07b7b781617afe04949afa75f3822b86e1bdb09b761a23963",
+    "quality.py": "1052c8e6c1822058f43996f1e4f4965a508a4785b11c98fc27a27648f6573202"
+  },
+  "prompt_sha256": {
+    "direct-v1.txt": "97055d80ce47fa6ae0baa98111d54234e9cde0e201f1a538c2bb2417271bcb24",
+    "controlled-v1.txt": "b8c742688121cbea6ca88d3d92396edcaa3e60b02705cfa13d36ff0775bdb77d"
+  },
+  "timing_scope": "local processing/import only; excludes model inference and manual transfer",
+  "processor": "controlled",
+  "approaches": {
+    "rules": "Not run",
+    "direct": "Not run",
+    "controlled": "Recorded"
+  },
+  "records": [
+    {
+      "record_id": "rec-05b57a42a446fa2e",
+      "source_id": "sec-0000789019-0001193125-26-323632",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323632/msft-20260729.htm",
+      "event_type": "earnings",
+      "summary": "Microsoft announced quarterly and annual results. The primary filing references an earnings exhibit but does not provide the operating figures; no financial amount is extracted.",
+      "review_status": "pending_review",
+      "validation_issues": [],
+      "facts": [
+        {
+          "field": "event_date",
+          "value": "2026-07-29",
+          "evidence": {
+            "start": 1915,
+            "end": 1931,
+            "quote": "On July 29, 2026"
+          }
+        }
+      ],
+      "provenance": {
+        "mock": false,
+        "source_kind": "sec_filing"
+      },
+      "input_sha256": "347e723b602c12c23a409b96176d5e790e8604e96cca4a899ef4fe915f7b4ec5"
+    },
+    {
+      "record_id": "rec-ebfcec773d795929",
+      "source_id": "sec-0000789019-0001193125-26-258667",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526258667/d26760d8k.htm",
+      "event_type": "leadership_change",
+      "summary": "Reid Hoffman informed Microsoft that he would not seek reelection and would serve until the annual meeting. An exact departure date is not supplied.",
+      "review_status": "pending_review",
+      "validation_issues": [],
+      "facts": [
+        {
+          "field": "event_date",
+          "value": "2026-06-02",
+          "evidence": {
+            "start": 2019,
+            "end": 2034,
+            "quote": "On June 2, 2026"
+          }
+        },
+        {
+          "field": "person",
+          "value": "Reid Hoffman",
+          "evidence": {
+            "start": 2036,
+            "end": 2048,
+            "quote": "Reid Hoffman"
+          }
+        },
+        {
+          "field": "role",
+          "value": "Director",
+          "evidence": {
+            "start": 2050,
+            "end": 2084,
+            "quote": "a member of the Board of Directors"
+          }
+        }
+      ],
+      "provenance": {
+        "mock": false,
+        "source_kind": "sec_filing"
+      },
+      "input_sha256": "3a11c451396c2fdeceb2f653b8072486c8c9734ba11536bde59ce96c0ed57cad"
+    },
+    {
+      "record_id": "rec-19fc816dae90bf82",
+      "source_id": "sec-0000019617-0001193125-26-426704",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/19617/000119312526426704/d351999d8k.htm",
+      "event_type": "financing",
+      "summary": "JPMorgan closed three note offerings. The current schema does not distinguish their tranches; the source uses a dollar symbol without an ISO code, so currency is left unresolved for review.",
+      "review_status": "needs_review",
+      "validation_issues": [
+        "contradictory_facts",
+        "missing_currency"
+      ],
+      "facts": [
+        {
+          "field": "event_date",
+          "value": "2026-10-20",
+          "evidence": {
+            "start": 3290,
+            "end": 3309,
+            "quote": "On October 20, 2026"
+          }
+        },
+        {
+          "field": "instrument",
+          "value": "Floating Rate Notes",
+          "evidence": {
+            "start": 3406,
+            "end": 3425,
+            "quote": "Floating Rate Notes"
+          }
+        },
+        {
+          "field": "amount",
+          "value": "350000000",
+          "currency": null,
+          "evidence": {
+            "start": 3363,
+            "end": 3375,
+            "quote": "$350,000,000"
+          }
+        },
+        {
+          "field": "amount",
+          "value": "2900000000",
+          "currency": null,
+          "evidence": {
+            "start": 3469,
+            "end": 3483,
+            "quote": "$2,900,000,000"
+          }
+        },
+        {
+          "field": "amount",
+          "value": "3750000000",
+          "currency": null,
+          "evidence": {
+            "start": 3604,
+            "end": 3618,
+            "quote": "$3,750,000,000"
+          }
+        }
+      ],
+      "provenance": {
+        "mock": false,
+        "source_kind": "sec_filing"
+      },
+      "input_sha256": "715b8d2d6286818b886e7293b2d10ec973f97ca3c4ca4dc02636aa070d61d0ac"
+    }
+  ]
+}

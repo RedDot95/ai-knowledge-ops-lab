@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI Knowledge Ops Lab Replay</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <h1>AI Knowledge Ops Lab</h1>
+      <p id="banner" class="banner">Recorded pipeline results — no live model processing</p>
+      <section>
+        <h2>Run status</h2>
+        <label for="run">Recorded run</label>
+        <select id="run">
+          <option value="manual">AI-assisted extraction — 3 real filings</option>
+          <option value="rules">Rules baseline — 15 real filings</option>
+        </select>
+        <p id="method"></p>
+        <p id="status" aria-live="polite"></p>
+      </section>
+      <section>
+        <h2>Records</h2>
+        <ul id="records"></ul>
+      </section>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>

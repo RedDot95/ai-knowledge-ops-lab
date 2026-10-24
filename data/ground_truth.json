@@ -1,0 +1,22 @@
+{
+  "schema_version": "ground-truth-v1",
+  "ground_truth_status": "AI-assisted/unreviewed",
+  "note": "Development annotations are provisional and not owner-approved ground truth.",
+  "records": [
+    {"split": "dev", "source_id": "sec-0000789019-0001193125-26-380280", "event_type": "other", "expected_fields": []},
+    {"split": "dev", "source_id": "sec-0000789019-0001193125-26-323632", "event_type": "earnings", "expected_fields": ["amount", "currency"]},
+    {"split": "dev", "source_id": "sec-0000789019-0001193125-26-258667", "event_type": "leadership_change", "expected_fields": ["person"]},
+    {"split": "dev", "source_id": "sec-0000320193-0000320193-26-000018", "event_type": "earnings", "expected_fields": ["amount", "currency"]},
+    {"split": "dev", "source_id": "sec-0000320193-0000320193-26-000011", "event_type": "earnings", "expected_fields": ["amount", "currency"]},
+    {"split": "dev", "source_id": "sec-0000320193-0001140361-26-015711", "event_type": "leadership_change", "expected_fields": ["person"]},
+    {"split": "dev", "source_id": "sec-0000019617-0001193125-26-426704", "event_type": "other", "expected_fields": []},
+    {"split": "dev", "source_id": "sec-0000019617-0001628280-26-065616", "event_type": "other", "expected_fields": []},
+    {"split": "dev", "source_id": "sec-0000019617-0001628280-26-065582", "event_type": "earnings", "expected_fields": ["amount", "currency"]},
+    {"split": "dev", "source_id": "sec-0001403161-0001403161-26-000121", "event_type": "other", "expected_fields": []},
+    {"split": "dev", "source_id": "sec-0001403161-0001403161-26-000103", "event_type": "earnings", "expected_fields": ["amount", "currency"]},
+    {"split": "dev", "source_id": "sec-0001403161-0001403161-26-000096", "event_type": "other", "expected_fields": []},
+    {"split": "dev", "source_id": "sec-0001045810-0001045810-26-000078", "event_type": "other", "expected_fields": []},
+    {"split": "dev", "source_id": "sec-0001045810-0001045810-26-000073", "event_type": "earnings", "expected_fields": ["amount", "currency"]},
+    {"split": "dev", "source_id": "sec-0001045810-0001045810-26-000069", "event_type": "financing", "expected_fields": ["amount", "currency"]}
+  ]
+}

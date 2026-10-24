@@ -1,0 +1,17 @@
+{
+  "schema_version": "robustness-fixtures-v1",
+  "kind": "synthetic",
+  "note": "Synthetic robustness fixtures only; excluded from reported real-source metrics.",
+  "records": [
+    {"source_id": "mock-01", "case": "invalid_json_output"},
+    {"source_id": "mock-02", "case": "unknown_source"},
+    {"source_id": "mock-03", "case": "hash_mismatch"},
+    {"source_id": "mock-04", "case": "evidence_offset_out_of_range"},
+    {"source_id": "mock-05", "case": "missing_currency"},
+    {"source_id": "mock-06", "case": "multi_event_ambiguity"},
+    {"source_id": "mock-07", "case": "duplicate_response"},
+    {"source_id": "mock-08", "case": "contradictory_facts"},
+    {"source_id": "mock-09", "case": "prompt_injection_indicator"},
+    {"source_id": "mock-10", "case": "stale_human_review"}
+  ]
+}
