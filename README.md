@@ -4,7 +4,14 @@ Applied AI research operations for turning real public company disclosures into 
 
 > **Recorded pipeline results — no live model processing**
 
-**Status: Implemented; deterministic workflow tested locally.** A three-source in-session AI extraction is recorded; isolated model experiments and held-out evaluation, owner annotation review, GitHub Pages deployment and recruiting-ready acceptance remain open. All work is on a review branch; `main` has not been merged.
+**Milestone M1: recorded, source-linked research pipeline.** A working Python CLI and static replay demonstrate ingestion, deterministic validation, auditable model-output import and review routing. A three-source in-session AI extraction is recorded. This is an evolving research project; isolated model experiments, reviewed labels and held-out evaluation remain open. See [milestone evidence and next steps](docs/milestone-m1.md).
+
+## Start here
+
+1. Read the [architecture](docs/architecture.md) and [evaluation limits](docs/evaluation.md).
+2. Run the offline regression suite with Python 3.12+: `python -m unittest discover -s tests -v`. No third-party package or API key is needed.
+3. Preview the committed replay: `python -m http.server 8000 --directory demo`, then open `http://localhost:8000`. Select the 15-source rules run or the separate three-source AI-assisted run. This serves recorded artifacts; it performs no model inference.
+4. To reproduce processing from the frozen source manifest, follow the commands below and the [recorded response import instructions](docs/manual-model-session.md). This requires SEC network access; raw source text is intentionally excluded from git.
 
 ## Scope and current state
 
@@ -53,7 +60,7 @@ No claim is made of owner code authorship, owner annotation approval, or product
 
 ## Evidence and limits
 
-On 21 October 2026, the corrected adapter fetched all 15 frozen real development filings with zero errors, and reproduced their recorded text hashes. The rules CLI processed all 15 and generated the committed replay. **32 local automated tests passed**, including regressions for false metric credit, malformed imports, stale approvals and frozen-source extraction. GitHub Actions run [39652111942](https://github.com/RedDot95/ai-knowledge-ops-lab/actions/runs/39652111942) also passed on commit `4ea75b6`; subsequent commits require their own CI result.
+On 21 October 2026, the corrected adapter fetched all 15 frozen real development filings with zero errors, and reproduced their recorded text hashes. The rules CLI processed all 15 and generated the committed replay. **32 automated tests passed again on 24 October 2026** at `0daed287426bda38785deaabc4e8d5f69473913f`, including regressions for false metric credit, malformed imports, stale approvals and frozen-source extraction. GitHub Actions run [39656453229](https://github.com/RedDot95/ai-knowledge-ops-lab/actions/runs/39656453229) passed on that same implementation commit. The historical live fetch was not repeated in the portfolio review; these are distinct verification events.
 
 The rule baseline is deliberately simple and has weak event classification on these filings. Ground-truth labels are provisional and contain cases requiring further review; exact-value and semantic-support annotations are incomplete. Its diagnostic score is not a validated performance benchmark. Undefined quality measures remain undefined. The demo offers the actual 15-source rules replay and a separate three-source AI-assisted replay. See [the recorded session](docs/manual-model-session.md). Neither is a validated model benchmark.
 
