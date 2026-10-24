@@ -18,7 +18,7 @@ Applied AI research operations for turning real public company disclosures into 
 - Real source corpus: frozen 15-document SEC Form 8-K development manifest at `data/dev_manifest.json` (reused from commit `104cfef170f90c282cf9fe5a9d90a53ddee502fc`).
 - Processor A (rules): implemented deterministic baseline.
 - Processors B/C (direct/controlled): implemented as **auditable import** of model outputs only; a real three-source in-session assistant demonstration has been imported, with explicit method limitations.
-- Ground truth: `data/ground_truth.json` is marked **AI-assisted/unreviewed**.
+- Ground truth: `data/ground_truth.json` remains **AI-assisted/unreviewed**. A [source-checked development review](docs/label-review-2026-10-24.md) reverified all 15 input hashes and corrected two classification labels; owner approval and exact-value/semantic annotations remain open.
 - Synthetic robustness fixtures: `data/robustness.json` (10 cases), excluded from reported real-source metrics.
 
 This repository is for research operations and does not provide investment advice.

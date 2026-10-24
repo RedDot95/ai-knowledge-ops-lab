@@ -1,0 +1,173 @@
+{
+  "schema_version": "dev-label-review-v1",
+  "review_date": "2026-10-24",
+  "owner_approved": false,
+  "scope": "All 15 frozen development primary documents only; no exhibits or held-out sources. AI-assisted source review, not independent human validation.",
+  "records": [
+    {
+      "source_id": "sec-0000789019-0001193125-26-380280",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526380280/d291965d8k.htm",
+      "input_sha256": "6393d1fa90710d80b999413b1263028e28a911b3ce7487b6be696cccb29e3cab",
+      "previous_event_type": "other",
+      "source_checked_event_type": "other",
+      "decision": "retained",
+      "primary_document_rationale": "Change to reportable segments and investor metrics; no earnings release, financing or director/officer transition is the principal event.",
+      "reviewer": "ChatGPT Work AI assistant",
+      "review_status": "AI-assisted/source-checked; owner approval pending"
+    },
+    {
+      "source_id": "sec-0000789019-0001193125-26-323632",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323632/msft-20260729.htm",
+      "input_sha256": "4d367a5b0fc400c6f7d78574f70297bef978644aedfe6937e0ee9ac438f1cc57",
+      "previous_event_type": "earnings",
+      "source_checked_event_type": "earnings",
+      "decision": "retained",
+      "primary_document_rationale": "Primary document explicitly announces fiscal-quarter and annual financial results; values are in an exhibit outside the frozen primary-document input.",
+      "reviewer": "ChatGPT Work AI assistant",
+      "review_status": "AI-assisted/source-checked; owner approval pending"
+    },
+    {
+      "source_id": "sec-0000789019-0001193125-26-258667",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526258667/d26760d8k.htm",
+      "input_sha256": "7180c4cc84fe1cd93d0626c111ff127bbed448e1e9a1b87e7bf9d98b1f41202e",
+      "previous_event_type": "leadership_change",
+      "source_checked_event_type": "leadership_change",
+      "decision": "retained",
+      "primary_document_rationale": "Board director non-reelection notice. Leadership taxonomy includes director and officer departures, not only executive appointments.",
+      "reviewer": "ChatGPT Work AI assistant",
+      "review_status": "AI-assisted/source-checked; owner approval pending"
+    },
+    {
+      "source_id": "sec-0000320193-0000320193-26-000018",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000018/aapl-20260730.htm",
+      "input_sha256": "a7afe5346f1b95cfcbfa42edf4768e0d635b97932bc4d2750935a8e8a54fd7a6",
+      "previous_event_type": "earnings",
+      "source_checked_event_type": "earnings",
+      "decision": "retained",
+      "primary_document_rationale": "Primary document announces quarterly results; numerical results are in Exhibit 99.1, outside the input.",
+      "reviewer": "ChatGPT Work AI assistant",
+      "review_status": "AI-assisted/source-checked; owner approval pending"
+    },
+    {
+      "source_id": "sec-0000320193-0000320193-26-000011",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000011/aapl-20260430.htm",
+      "input_sha256": "000e1650b9d1bc665680192acc689d50599466e67f110c03eb718e2e4fb50881",
+      "previous_event_type": "earnings",
+      "source_checked_event_type": "earnings",
+      "decision": "retained",
+      "primary_document_rationale": "Primary document announces quarterly results; numerical results are in Exhibit 99.1, outside the input.",
+      "reviewer": "ChatGPT Work AI assistant",
+      "review_status": "AI-assisted/source-checked; owner approval pending"
+    },
+    {
+      "source_id": "sec-0000320193-0001140361-26-015711",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000114036126015711/ef20071035_8k.htm",
+      "input_sha256": "400fd6dddcdfe531e2bafcfff1673e14469be69b5e609ca1b57cdfa232b258dc",
+      "previous_event_type": "leadership_change",
+      "source_checked_event_type": "leadership_change",
+      "decision": "retained",
+      "primary_document_rationale": "CEO appointment and executive-chair/board transition, with a stated future effective date.",
+      "reviewer": "ChatGPT Work AI assistant",
+      "review_status": "AI-assisted/source-checked; owner approval pending"
+    },
+    {
+      "source_id": "sec-0000019617-0001193125-26-426704",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/19617/000119312526426704/d351999d8k.htm",
+      "input_sha256": "c519ca0decd4193970668527a527fcd45c8db356a7347241deaed5b75c220fa1",
+      "previous_event_type": "other",
+      "source_checked_event_type": "financing",
+      "decision": "corrected",
+      "primary_document_rationale": "Closed public offerings of three note tranches. Substance is financing even though the filing reports it under Item 8.01.",
+      "reviewer": "ChatGPT Work AI assistant",
+      "review_status": "AI-assisted/source-checked; owner approval pending"
+    },
+    {
+      "source_id": "sec-0000019617-0001628280-26-065616",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/19617/000162828026065616/jpm-20261013.htm",
+      "input_sha256": "c2ad3e211592007c61ba4416efff2c2ca48e8292e029b6ab79793b0bef988b9e",
+      "previous_event_type": "other",
+      "source_checked_event_type": "earnings",
+      "decision": "corrected",
+      "primary_document_rationale": "Primary document explicitly describes an investor presentation reviewing third-quarter earnings. Item 7.01 alone does not make the subject other.",
+      "reviewer": "ChatGPT Work AI assistant",
+      "review_status": "AI-assisted/source-checked; owner approval pending"
+    },
+    {
+      "source_id": "sec-0000019617-0001628280-26-065582",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/19617/000162828026065582/jpm-20261013.htm",
+      "input_sha256": "b0f40258661a78363f5f53248d3063f516b0a6bed520b07e45a506d36f5a2c62",
+      "previous_event_type": "earnings",
+      "source_checked_event_type": "earnings",
+      "decision": "retained",
+      "primary_document_rationale": "Quarterly results announcement with net income and per-share values in the primary body; field-value selection still needs an explicit annotation contract.",
+      "reviewer": "ChatGPT Work AI assistant",
+      "review_status": "AI-assisted/source-checked; owner approval pending"
+    },
+    {
+      "source_id": "sec-0001403161-0001403161-26-000121",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1403161/000140316126000121/v-20260918.htm",
+      "input_sha256": "1818fc5e7cfb688dc7e7c22e21bd8fbd26a161f578c2314e7ee38f5a37b1ce80",
+      "previous_event_type": "other",
+      "source_checked_event_type": "other",
+      "decision": "retained",
+      "primary_document_rationale": "Litigation escrow deposit and conversion-ratio adjustment; neither an earnings release nor capital raising.",
+      "reviewer": "ChatGPT Work AI assistant",
+      "review_status": "AI-assisted/source-checked; owner approval pending"
+    },
+    {
+      "source_id": "sec-0001403161-0001403161-26-000103",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1403161/000140316126000103/v-20260728.htm",
+      "input_sha256": "687efb26477047d11bb6513c3fbbebbd3b8ad3a6dae19110729675d4bbdf7567",
+      "previous_event_type": "earnings",
+      "source_checked_event_type": "earnings",
+      "decision": "retained",
+      "primary_document_rationale": "Quarterly earnings release and call announcement, plus a dividend. Use earnings as the primary classification; dividend amount is not an earnings amount.",
+      "reviewer": "ChatGPT Work AI assistant",
+      "review_status": "AI-assisted/source-checked; owner approval pending"
+    },
+    {
+      "source_id": "sec-0001403161-0001403161-26-000096",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1403161/000140316126000096/v-20260714.htm",
+      "input_sha256": "71ffa619506379a5e969c1a2c6f6e5b8612425f84594e01880c2558aa266363c",
+      "previous_event_type": "other",
+      "source_checked_event_type": "other",
+      "decision": "retained",
+      "primary_document_rationale": "Bylaw/forum-selection amendment. Governance document amendment without a director/officer change.",
+      "reviewer": "ChatGPT Work AI assistant",
+      "review_status": "AI-assisted/source-checked; owner approval pending"
+    },
+    {
+      "source_id": "sec-0001045810-0001045810-26-000078",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000078/nvda-20260902.htm",
+      "input_sha256": "9a0692ec450ef4b675316ac236c98647bba442867e498d9bfd07c3de609af521",
+      "previous_event_type": "other",
+      "source_checked_event_type": "other",
+      "decision": "retained",
+      "primary_document_rationale": "Acquisition agreement. Under this fixed taxonomy an acquisition belongs to other, not financing merely because it states a purchase price.",
+      "reviewer": "ChatGPT Work AI assistant",
+      "review_status": "AI-assisted/source-checked; owner approval pending"
+    },
+    {
+      "source_id": "sec-0001045810-0001045810-26-000073",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000073/nvda-20260826.htm",
+      "input_sha256": "a1c09ecea2b51f639bc9eed2f5f119ce87f627ecc6c7ae3af089afe250d9a4c5",
+      "previous_event_type": "earnings",
+      "source_checked_event_type": "earnings",
+      "decision": "retained",
+      "primary_document_rationale": "Quarterly results announcement; figures are in exhibits outside the primary-document input.",
+      "reviewer": "ChatGPT Work AI assistant",
+      "review_status": "AI-assisted/source-checked; owner approval pending"
+    },
+    {
+      "source_id": "sec-0001045810-0001045810-26-000069",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000069/nvda-20260817.htm",
+      "input_sha256": "8849e535f2042c79829edb1af62b6cd5f42e795d1fe02506210e2c696a5cc215",
+      "previous_event_type": "financing",
+      "source_checked_event_type": "financing",
+      "decision": "retained",
+      "primary_document_rationale": "Credit support and contingent residual-value guaranties under Items 1.01/2.03. Financing includes disclosed financial obligations; the cap is not cash spent or a closed investment.",
+      "reviewer": "ChatGPT Work AI assistant",
+      "review_status": "AI-assisted/source-checked; owner approval pending"
+    }
+  ]
+}
